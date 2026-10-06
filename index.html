@@ -1,0 +1,1092 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mark Raven | Programmer Portfolio</title>
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg-dark: #050916;
+            --bg-panel: #10182d;
+            --bg-panel-strong: #0d1327;
+            --primary: #00c8ff;
+            --primary-strong: #00a8d6;
+            --text: #edf4ff;
+            --muted: #aeb6c8;
+            --border: rgba(255, 255, 255, 0.08);
+            --shadow: rgba(0, 200, 255, 0.2);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at 15% 15%, rgba(34, 211, 238, 0.08), transparent 24%),
+                radial-gradient(circle at 85% 22%, rgba(168, 85, 247, 0.08), transparent 28%),
+                radial-gradient(circle at 50% 78%, rgba(34, 211, 238, 0.04), transparent 32%),
+                linear-gradient(135deg, #05080d 0%, #0a1017 30%, #111b28 100%);
+            color: var(--text);
+            line-height: 1.6;
+            position: relative;
+            isolation: isolate;
+            overflow-x: hidden;
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        body::before {
+            background:
+                linear-gradient(rgba(95, 124, 156, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(95, 124, 156, 0.07) 1px, transparent 1px),
+                linear-gradient(120deg, transparent 0%, rgba(34, 211, 238, 0.04) 42%, transparent 55%);
+            background-size: 180px 180px, 180px 180px, 100% 100%;
+            opacity: 0.5;
+            filter: blur(1px);
+            mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 16%, rgba(0,0,0,0.38) 52%, transparent 100%);
+        }
+
+        body::after {
+            width: 760px;
+            height: 760px;
+            left: 50%;
+            top: 48%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(34, 211, 238, 0.12), rgba(168, 85, 247, 0.08) 35%, transparent 68%);
+            filter: blur(90px);
+            opacity: 0.95;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 4px;
+        }
+
+        .skip-link {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            z-index: 2000;
+            padding: 10px 14px;
+            color: #061018;
+            background: var(--primary);
+            border-radius: 6px;
+            transform: translateY(-160%);
+            transition: transform 0.2s ease;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            width: 100%;
+            padding: 18px 8%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(7, 11, 22, 0.78);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #00c8ff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: #ddd;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #00c8ff;
+        }
+
+
+        /* =========================
+           HOME
+        ========================= */
+
+        #home {
+            min-height: 90vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 70px 8%;
+
+            background:
+                radial-gradient(circle at 70% 30%, rgba(34, 211, 238, 0.12), transparent 24%),
+                radial-gradient(circle at 18% 82%, rgba(168, 85, 247, 0.08), transparent 28%),
+                linear-gradient(180deg, rgba(5, 8, 13, 0.2), rgba(5, 8, 13, 0.7));
+            position: relative;
+            z-index: 1;
+        }
+
+        .home-container {
+            width: min(1100px, 100%);
+            max-width: 100%;
+
+            display: flex;
+            align-items: center;
+            gap: 80px;
+
+            background: rgba(10, 15, 21, 0.28);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 30px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 24px 70px rgba(2, 6, 12, 0.36);
+            padding: 42px 36px;
+            position: relative;
+        }
+
+
+        /* =========================
+           ANIME PROFILE
+        ========================= */
+
+        .profile {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .profile::before {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border: 2px solid #00c8ff;
+
+            border-radius: 50%;
+
+            top: -10px;
+            left: -10px;
+
+            animation: rotate 8s linear infinite;
+        }
+
+        .profile img {
+            width: 280px;
+            height: 280px;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+            border: 5px solid #00c8ff;
+
+            position: relative;
+            z-index: 2;
+
+            box-shadow:
+                0 0 25px rgba(0, 200, 255, 0.5);
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes floatGlow {
+            0% {
+                transform: translate(0, 0) scale(0.96);
+            }
+
+            100% {
+                transform: translate(-18px, 22px) scale(1.08);
+            }
+        }
+
+
+        /* =========================
+           HOME TEXT
+        ========================= */
+
+        .home-text small {
+            color: #00c8ff;
+            font-size: 16px;
+        }
+
+        .home-text h1 {
+            font-size: 55px;
+            line-height: 1.2;
+            margin: 10px 0;
+        }
+
+        .home-text h1 span {
+            color: #00c8ff;
+        }
+
+        .home-text h2 {
+            color: #b8c0d4;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .home-text p {
+            color: #aeb6c8;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+
+        /* BUTTON */
+
+        .btn {
+            display: inline-block;
+
+            padding: 12px 24px;
+
+            background: #00a8d6;
+
+            color: white;
+
+            border-radius: 6px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #00c8ff;
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 200, 255, 0.3);
+        }
+
+
+        /* =========================
+           GENERAL SECTIONS
+        ========================= */
+
+        section {
+            padding: 90px 8%;
+            position: relative;
+            z-index: 1;
+            scroll-margin-top: 88px;
+        }
+
+        .section-title {
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+        .section-title small {
+            color: #00c8ff;
+            font-size: 14px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-top: 5px;
+        }
+
+
+        /* =========================
+           EDUCATION
+        ========================= */
+
+        #education {
+            background: rgba(12, 16, 32, 0.72);
+        }
+
+        .education-container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .education-card {
+            background: #12182a;
+
+            padding: 30px;
+
+            margin-bottom: 20px;
+
+            border: 1px solid #242c42;
+
+            border-radius: 10px;
+
+            position: relative;
+
+            transition: 0.3s;
+        }
+
+        .education-card:hover {
+            transform: translateX(8px);
+            border-color: #00c8ff;
+        }
+
+        .education-card::before {
+            content: "🎓";
+
+            position: absolute;
+
+            right: 25px;
+            top: 25px;
+
+            font-size: 30px;
+        }
+
+        .education-card h3 {
+            color: #00c8ff;
+            margin-bottom: 10px;
+            padding-right: 50px;
+        }
+
+        .education-card p {
+            color: #b9c0d0;
+            margin: 5px 0;
+        }
+
+
+        /* =========================
+           PROJECTS
+        ========================= */
+
+        #projects {
+            background: rgba(8, 11, 22, 0.48);
+        }
+
+        .projects-container {
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 25px;
+        }
+
+
+        /* PROJECT CARD */
+
+        .project-card {
+            background: #12182a;
+
+            border: 1px solid #242c42;
+
+            border-radius: 12px;
+
+            padding: 28px;
+
+            transition: 0.3s;
+
+            position: relative;
+
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .project-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 100%;
+            height: 3px;
+
+            background: #00c8ff;
+
+            top: 0;
+            left: 0;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+
+            border-color: #00c8ff;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 200, 255, 0.12);
+        }
+
+
+        /* PROJECT NUMBER */
+
+        .project-number {
+            color: #506078;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+
+        /* PROJECT NAME */
+
+        .project-card h3 {
+            color: white;
+
+            font-size: 23px;
+
+            margin-bottom: 12px;
+        }
+
+
+        /* DESCRIPTION */
+
+        .project-card p {
+            color: #aeb6c8;
+
+            font-size: 14px;
+
+            margin-bottom: 22px;
+        }
+
+
+        /* TECH STACK */
+
+        .tech-title {
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+        }
+
+        .tech-stack {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+        }
+
+        .tech {
+            background: #18283b;
+
+            color: #00c8ff;
+
+            border: 1px solid #29465b;
+
+            padding: 5px 9px;
+
+            border-radius: 4px;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        #contact {
+            background: rgba(12, 16, 32, 0.72);
+        }
+
+        .contact-container {
+            max-width: 900px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .contact-link {
+            min-height: 110px;
+            padding: 20px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            background: #12182a;
+            border: 1px solid #242c42;
+            border-radius: 8px;
+
+            color: white;
+            transition: 0.3s;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-3px);
+            border-color: #00c8ff;
+        }
+
+        .contact-link small {
+            color: #00c8ff;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        .contact-link span {
+            color: #b9c0d0;
+            overflow-wrap: anywhere;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+
+            padding: 25px;
+
+            background: #05070e;
+
+            color: #727b90;
+
+            border-top: 1px solid #20263a;
+        }
+
+
+        /* =========================
+           RESPONSIVE DESIGN
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .home-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 50px;
+            }
+
+            .home-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .projects-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .contact-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 14px 6%;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 8px 18px;
+            }
+
+            .home-text h1 {
+                font-size: clamp(34px, 10vw, 42px);
+            }
+
+            .home-text h2 {
+                font-size: 18px;
+            }
+
+            .profile img {
+                width: 220px;
+                height: 220px;
+            }
+
+            .profile::before {
+                width: 240px;
+                height: 240px;
+            }
+
+            .home-container {
+                padding: 30px 20px;
+                gap: 36px;
+            }
+
+            .projects-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            section {
+                padding: 60px 6%;
+            }
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav aria-label="Main navigation">
+
+        <div class="logo">
+            Mark <span>Raven</span>
+        </div>
+
+        <ul>
+            <li>
+                <a href="#home">Home</a>
+            </li>
+
+            <li>
+                <a href="#education">Education</a>
+            </li>
+
+            <li>
+                <a href="#projects">Projects</a>
+            </li>
+
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+        </ul>
+
+    </nav>
+
+
+
+    <!-- =========================
+         HOME
+    ========================= -->
+
+    <main id="main-content">
+
+    <section id="home">
+
+        <div class="home-container">
+
+
+            <!-- Profile Image -->
+
+            <div class="profile">
+
+                <img
+                    src="picture.jpg"
+                    alt="Portrait of Mark Raven"
+                    width="280"
+                    height="280"
+                    fetchpriority="high"
+                >
+
+            </div>
+
+
+            <!-- Introduction -->
+
+            <div class="home-text">
+
+                <small>
+                    WELCOME TO MY PORTFOLIO
+                </small>
+
+                <h1>
+                    Hi, I'm
+                    <span>Mark Raven</span>
+                </h1>
+
+                <h2>
+                    BSIT Student • Programmer • Web Developer
+                </h2>
+
+                <p>
+                    I am an Information Technology student
+                    who enjoys learning programming and
+                    creating websites, mobile applications,
+                    and useful systems. This portfolio
+                    contains some of my school projects
+                    and work.
+                </p>
+
+                <a
+                    href="#projects"
+                    class="btn"
+                >
+                    View My Projects
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+         EDUCATION
+    ========================= -->
+
+    <section id="education">
+
+        <div class="section-title">
+
+            <small>MY BACKGROUND</small>
+
+            <h2>Education</h2>
+
+        </div>
+
+
+        <div class="education-container">
+
+
+            <!-- College -->
+
+            <div class="education-card">
+
+                <h3>
+                    Bachelor of Science in Information Technology
+                </h3>
+
+                <p>
+                    <strong>
+                        Nueva Vizcaya State University
+                    </strong>
+                </p>
+
+                <p>
+                    Bayombong Campus
+                </p>
+
+                <p>
+                    Currently Studying
+                </p>
+
+            </div>
+
+
+            <!-- Senior High -->
+
+            <div class="education-card">
+
+                <h3>
+                    Senior High School
+                </h3>
+
+                <p>
+                    Information and Communication
+                    Technology (ICT)
+                </p>
+
+                <p>
+                    Completed
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         PROJECTS
+    ========================= -->
+
+    <section id="projects">
+
+        <div class="section-title">
+
+            <small>WHAT I'VE BUILT</small>
+
+            <h2>My Projects</h2>
+
+        </div>
+
+
+        <div class="projects-container">
+
+
+            <!-- PROJECT 1 -->
+
+            <div class="project-card">
+
+                <div class="project-number">
+                    PROJECT 01
+                </div>
+
+                <h3>
+                    Cel-Kal-Culator
+                </h3>
+
+                <p>
+                    A simple mobile temperature converter.
+                    Users can enter a Celsius value and
+                    convert it into Fahrenheit or Kelvin.
+                    The application also keeps a history
+                    of previous conversions.
+                </p>
+
+                <div class="tech-title">
+                    Tech Stack
+                </div>
+
+                <div class="tech-stack">
+
+                    <span class="tech">
+                        MIT App Inventor
+                    </span>
+
+                    <span class="tech">
+                        Android
+                    </span>
+
+                    <span class="tech">
+                        Blocks
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PROJECT 2 -->
+
+            <div class="project-card">
+
+                <div class="project-number">
+                    PROJECT 02
+                </div>
+
+                <h3>
+                    DSWD Aid Assistance System
+                </h3>
+
+                <p>
+                    A proposed system for managing aid
+                    assistance and appointment scheduling.
+                    It is designed to make the process of
+                    organizing beneficiaries and appointments
+                    easier.
+                </p>
+
+                <div class="tech-title">
+                    Tech Stack
+                </div>
+
+                <div class="tech-stack">
+
+                    <span class="tech">
+                        HTML
+                    </span>
+
+                    <span class="tech">
+                        CSS
+                    </span>
+
+                    <span class="tech">
+                        JavaScript
+                    </span>
+
+                    <span class="tech">
+                        MySQL
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PROJECT 3 -->
+
+            <div class="project-card">
+
+                <div class="project-number">
+                    PROJECT 03
+                </div>
+
+                <h3>
+                    Student Portfolio
+                </h3>
+
+                <p>
+                    A personal website created to introduce
+                    myself and showcase my education,
+                    programming projects, and skills as
+                    an Information Technology student.
+                </p>
+
+                <div class="tech-title">
+                    Tech Stack
+                </div>
+
+                <div class="tech-stack">
+
+                    <span class="tech">
+                        HTML5
+                    </span>
+
+                    <span class="tech">
+                        CSS3
+                    </span>
+
+                    <span class="tech">
+                        JavaScript
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <section id="contact">
+
+        <div class="section-title">
+
+            <small>GET IN TOUCH</small>
+
+            <h2>Contact</h2>
+
+        </div>
+
+
+        <div class="contact-container">
+
+            <a class="contact-link" href="mailto:markravenviernes31@gmail.com">
+                <small>Email</small>
+                <span>markravenviernes31@gmail.com</span>
+            </a>
+
+            <a class="contact-link" href="https://github.com/markravenviernes31-ai" target="_blank" rel="noopener noreferrer">
+                <small>GitHub</small>
+                <span>markravenviernes31-ai</span>
+            </a>
+
+            <a class="contact-link" href="https://www.facebook.com/search/top?q=Viernes%20Mark%20Raven" target="_blank" rel="noopener noreferrer">
+                <small>Facebook</small>
+                <span>Viernes Mark Raven</span>
+            </a>
+
+        </div>
+
+    </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <p>
+            © 2026 Mark Raven Viernes
+        </p>
+
+        <p>
+            Programmer Portfolio
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
